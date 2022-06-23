@@ -1,4 +1,4 @@
-var teclas = {
+var teclas = { // este es un objeto
 UP: 38, //Así se define un atributo (estandar javaScript objet notation)
 DOWN: 40,
 LEFT: 37, // Los atributos se seraparan con comas
@@ -9,28 +9,51 @@ RIGHT: 39
 console.log (teclas);
 
 document.addEventListener("keyup",dibujarTeclado); // detecta cuando se oprime una tecla (keydown), cuando se suelta la tecla (keyup)
+console.log (keyup);
+var cuadrito = document.getElementById ("area_de_dibujo");
+var papel = cuadrito.getContext("2d");
+var x = 150;
+var y = 150;
+dibujarLinea ("red",149,149,151,151,papel);
 
+function dibujarLinea (color, xinicial, yinicial,xfinal,yfinal,lienzo)
+{
+lienzo.beginPath(); 
+lienzo.strokeStyle = color; 
+lienzo.lineWidth = 3;
+lienzo.moveTo(xinicial,yinicial);
+lienzo.lineTo(xfinal,yfinal);
+lienzo.stroke(); 
+lienzo.closePath()
+}
 function dibujarTeclado(evento)
 {
+    var colorcito = "blue";
+    var movimiento = 10;
 
    switch (evento.keyCode) // solo funciona para comparar una algo incial, con algo final.
    {
     case teclas.UP:
-        console.log ("arriba");
+        dibujarLinea (colorcito,x,y,x,y-movimiento, papel);
+        y= y-movimiento;
         break;
     case teclas.DOWN:
-        console.log("abajo");
+        dibujarLinea (colorcito,x,y,x,y+movimiento,papel);
+        y= y+movimiento;
         break;
 
     case teclas.LEFT:
-        console.log("izquierda");
+        dibujarLinea (colorcito,x,y,x-movimiento,y,papel);
+        x = x-movimiento;
         break;
-     case teclas.LEFT:
-        console.log("derecha");
+     case teclas.RIGHT:
+        dibujarLinea (colorcito,x,y,x + movimiento,y,papel);
+        x = x + movimiento;
         break;
         
         default:
             console.log ("Presionaste otra tecla");
    }
-    
+
+  
 }
