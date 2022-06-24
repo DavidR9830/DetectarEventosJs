@@ -9,7 +9,6 @@ RIGHT: 39
 console.log (teclas);
 
 document.addEventListener("keyup",dibujarTeclado); // detecta cuando se oprime una tecla (keydown), cuando se suelta la tecla (keyup)
-console.log (keyup);
 var cuadrito = document.getElementById ("area_de_dibujo");
 var papel = cuadrito.getContext("2d");
 var x = 150;
